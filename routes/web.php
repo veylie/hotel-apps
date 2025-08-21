@@ -15,7 +15,7 @@ Route::get('belajar', function(){
 Route::get('belajar', [\App\Http\Controllers\BelajarController::class, 'index']);
 Route::get('login', [App\Http\Controllers\LoginController::class, 'index']);
 Route::get('login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
-Route::post('login_action', [App\Http\Controllers\LoginController::class, 'loginAction'])->name('login_action');
+Route::post('login_action', [App\Http\Controllers\UserController::class, 'loginAction'])->name('login_action');
 
 Route::resource('dashboard', \App\Http\Controllers\ControllerDashboard::class);
 
