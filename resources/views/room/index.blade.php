@@ -1,5 +1,5 @@
 @extends('app')
-@section('title', 'Kategori Kamar')
+@section('title', 'Data Kamar')
 @section('content')
     <div class="row">
         <div class="col-sm-12">
@@ -7,14 +7,16 @@
                 <div class="card-body">
                     <h3 class="card-title">{{ $title ?? '' }}</h3>
                     <div align="right" class="mb-3">
-                        <a href="{{ route('categories.create') }}" class="btn btn-primary">Tambah</a>
+                        <a href="{{ route('room.create') }}" class="btn btn-primary">Tambah</a>
                     </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Foto</th>
+                                <th>Kategori</th>
                                 <th>Nama</th>
-                                <th>Slug</th>
+                                <th>Harga</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -22,11 +24,14 @@
                             @foreach ($datas as $index => $data)
                                 <tr>
                                     <td>{{ $index += 1 }}</td>
+                                    <td><img width="100" src="{{ asset('storage/' . $data->image_cover) }}"
+                                            alt=""></td>
+                                    <td>{{ $data->category->name }}</td>
                                     <td>{{ $data->name }}</td>
-                                    <td>{{ $data->slug }}</td>
+                                    <td>{{ number_format($data->price) }}</td>
                                     <td>
-                                        <a href="{{ route('categories.edit', $data->id) }}" class="btn btn-success">Edit</a>
-                                        <form action="{{ route('categories.destroy', $data->id) }}" method="post"
+                                        <a href="{{ route('room.edit', $data->id) }}" class="btn btn-success">Edit</a>
+                                        <form action="{{ route('room.destroy', $data->id) }}" method="post"
                                             class="d-inline">
                                             @csrf
                                             @method('DELETE')

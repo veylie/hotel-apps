@@ -16,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (datas as $index => $data)
+                        @foreach ($datas as $index => $data)
                         <tr>
                             <td>{{$index += 1}}</td>
                             <td>{{$data->name}}</td>

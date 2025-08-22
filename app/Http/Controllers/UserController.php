@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class UserController extends Controller
@@ -22,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -30,7 +31,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Insert into users
+        User::create($request->all());
+        return redirect()->to('user');
     }
 
     /**
@@ -46,7 +49,10 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // select * from user where id ='$id'
+        $edit = User::find($id);
+        $title = "Ubah Pengguna";
+        return view('user.edit', compact('edit', 'title'));
     }
 
     /**
@@ -54,7 +60,15 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+        if ($request->password) {
+            $data['password'] = Hash::make($request->password);
+        }
+        User::where('id', $id)->update($data);
+        return redirect()->to('user');
     }
 
     /**
@@ -62,6 +76,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::find($id)->delete();
+        return redirect()->to('user');
     }
 }
