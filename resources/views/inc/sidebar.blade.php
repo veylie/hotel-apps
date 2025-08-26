@@ -1,3 +1,4 @@
+<!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -86,6 +87,20 @@
                 </li>
             </ul>
         </li><!-- End Components Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ url('guestinformation') }}">
+                <i class="bi bi-person"></i>
+                <span>Guest Information</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('reservation.index') }}">
+                <i class="bi bi-calendar"></i>
+                <span>Reservasi</span>
+            </a>
+        </li>
+        <!-- End Profile Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -233,4 +248,5 @@
 
     </ul>
 
-</aside><!-- End Sidebar-->
+</aside>
+<!-- End Sidebar-->
